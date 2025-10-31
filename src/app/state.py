@@ -7,4 +7,3 @@ class GraphState(BaseModel):
     rag_results: List[dict] | None = None
     sql_results: Dict[str, Any] | None = None
     final_answer: str | None = None
-

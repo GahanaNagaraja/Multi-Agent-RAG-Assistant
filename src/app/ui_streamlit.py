@@ -21,4 +21,3 @@ if st.button("Run") or q:
         st.dataframe(state.sql_results["df"].head(10))
     st.subheader("Final Answer")
     st.markdown(state.final_answer)
-

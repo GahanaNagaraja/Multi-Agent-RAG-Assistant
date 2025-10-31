@@ -11,4 +11,3 @@ def run_sql_agent(query: str):
         sql = "SELECT * FROM complaints LIMIT 10"
     df = run_sql(sql)
     return {"sql": sql, "df": df}
-

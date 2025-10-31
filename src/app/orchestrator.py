@@ -20,4 +20,3 @@ def handle_query(user_q: str) -> GraphState:
     _ = critic(st.final_answer)  # simple pass-through for now
 
     return st
-

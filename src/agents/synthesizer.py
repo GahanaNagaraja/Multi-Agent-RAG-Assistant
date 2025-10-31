@@ -18,5 +18,4 @@ def synthesize(user_q: str, rag, sqlres=None):
 
     Sources: {', '.join(sorted(set(cites))) if cites else 'n/a'}
     """).strip()
-    return answer
-
+    return answer 

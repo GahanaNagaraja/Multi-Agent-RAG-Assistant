@@ -8,4 +8,3 @@ class Settings(BaseSettings):
     TOP_K: int = 5
 
 settings = Settings()
-
