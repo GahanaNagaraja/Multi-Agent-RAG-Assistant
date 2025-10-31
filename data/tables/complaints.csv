@@ -1,0 +1,6 @@
+date,category,channel,region,severity,resolved,product_id
+2025-05-01,Delivery Delay,Email,NE,2,True,P100
+2025-05-03,Wrong Size,Chat,NE,3,False,P101
+2025-06-10,Delivery Delay,Phone,SW,4,False,P100
+2025-06-11,Damaged,Email,NE,3,True,P102
+2025-06-12,Delivery Delay,Chat,NE,2,True,P100
