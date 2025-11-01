@@ -1,5 +1,6 @@
 import streamlit as st
 from src.app.orchestrator import handle_query
+from src.tools.charts import bar_chart
 
 st.set_page_config(page_title="Multi-Agent RAG Assistant", page_icon="🤖", layout="wide")
 st.title("🤖 Multi-Agent RAG Assistant (MVP)")
@@ -8,16 +9,28 @@ q = st.text_input("Ask a question", value="Why did complaints increase in Q2? In
 if st.button("Run") or q:
     st.write("Running…")
     state = handle_query(q)
+
     st.subheader("Plan")
     st.json(state.plan)
+
     if state.rag_results:
         st.subheader("Doc snippets")
         for r in state.rag_results:
             with st.expander(r["source"]):
                 st.write(r["snippet"])
+
     if state.sql_results:
         st.subheader("SQL")
         st.code(state.sql_results["sql"])
         st.dataframe(state.sql_results["df"].head(10))
+        # Try to render a quick bar chart from the first two columns
+        try:
+            df = state.sql_results["df"]
+            img = bar_chart(df, x=df.columns[0], y=df.columns[1])
+            st.image(img, caption="SQL result preview")
+        except Exception as e:
+            st.caption(f"(Chart skipped: {e})")
+
     st.subheader("Final Answer")
     st.markdown(state.final_answer)
+
