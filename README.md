@@ -13,38 +13,53 @@ This project solves that gap by creating an autonomous, multi-agent AI system th
 
 ## Objective
 -> Design a multi-agent architecture capable of dynamic role assignment and reasoning.
+
 -> Integrate RAG pipelines for document retrieval and SQL agents for tabular analytics.
+
 -> Enable autonomous orchestration using LangChain and LangGraph frameworks.
+
 -> Deliver real-time results through a Streamlit-based web UI with visualization support.
+
 -> Optimize system performance for low-RAM execution (≤8 GB) using caching and persistent storage.
 
 ## System Architecture
 Agents & Roles
 
 -> Planner – interprets the user’s query and decides whether to query documents, structured data, or both.
+
 -> Researcher – performs semantic retrieval using Sentence-Transformers and FAISS from a ChromaDB vector store.
+
 -> SQL Agent – runs analytical queries over DuckDB tables (e.g., complaints, orders, finance).
+
 -> Synthesizer – merges document and SQL findings into a unified, explainable answer.
+
 -> Critic – validates factual consistency and refines the final response before display.
 
 ## Methodology
 1. Data Preparation
 
 -> Organized documents in /data/docs and tables in /data/tables.
+
 -> Built persistent vector indexes using Sentence-Transformers (all-MiniLM-L6-v2) and FAISS inside ChromaDB.
+
 -> Created SQL views in DuckDB to query CSVs dynamically.
 
 2. Agentic Reasoning Workflow
 
 -> Planner parses user query → sets flags (need_docs, need_sql).
+
 -> Researcher retrieves semantically similar document snippets (top-k).
+
 -> SQL Agent executes context-relevant SQL (aggregation, filtering, joins).
+
 -> Synthesizer merges retrieved contexts and SQL summaries → formats results as Markdown and charts.
+
 -> Critic ensures logical consistency and output quality.
 
 3. Visualization Layer
 
 -> Built an interactive Streamlit app for live query input, plan visualization, retrieved snippets, SQL results, and charts generated using Matplotlib.
+
 -> Enables real-time feedback and traceability of agent decisions.
 
 ## Technologies Used
@@ -63,9 +78,13 @@ Agents & Roles
 ## Key Outcomes
 
 -> Achieved 60% faster query-to-insight turnaround through parallel document and SQL reasoning.
+
 -> Delivered real-time, explainable insights via an interactive Streamlit dashboard.
+
 -> Optimized retrieval latency using FAISS vector search and embedding caching.
+
 -> Validated robustness in low-memory (7–8 GB) environments.
+
 -> Demonstrated scalable foundation for enterprise RAG + analytics assistants.
 
 ## Evaluation
@@ -74,13 +93,19 @@ The project includes a JSON file for testing retrieval and synthesis quality. Ea
 
 Evaluation metrics include:
 -> Retrieval recall (Top-k match rate)
+
 -> SQL query correctness
+
 -> Synthesized answer coherence
 
 ## Future Enhancements
 
 -> Integrate LLM-based SQL generation for natural-language analytics.
+
 -> Add Cross-Encoder reranker for improved document relevance.
+
 -> Extend guardrails for safe SQL execution and prompt validation.
+
 -> Deploy publicly via Streamlit Cloud / Render / Hugging Face Spaces.
+
 -> Implement RAGAS-based evaluation and CI-driven testing.
